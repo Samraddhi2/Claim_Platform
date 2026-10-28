@@ -10,8 +10,22 @@
 ![Frontend coverage](https://img.shields.io/badge/frontend%20coverage-100%25-brightgreen)
 ![Backend coverage](https://img.shields.io/badge/backend%20coverage-6.4%25%20overall%20%7C%20domain%20100%25-orange)
 ![.NET](https://img.shields.io/badge/.NET-8-512BD4)
+![ASP.NET Core Web API](https://img.shields.io/badge/ASP.NET_Core-Web_API-512BD4)
+![C#](https://img.shields.io/badge/C%23-CSharp-239120)
 ![Angular](https://img.shields.io/badge/Angular-17-DD0031)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6)
+![RxJS](https://img.shields.io/badge/RxJS-B7178C)
+![Entity Framework Core](https://img.shields.io/badge/Entity_Framework_Core-512BD4)
+![SQLite](https://img.shields.io/badge/SQLite-003B57)
+![REST API](https://img.shields.io/badge/REST-API-02569B)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D)
 ![Kafka](https://img.shields.io/badge/Kafka-optional-231F20)
+![Git](https://img.shields.io/badge/Git-F05032)
+![GitHub](https://img.shields.io/badge/GitHub-181717)
+![xUnit](https://img.shields.io/badge/xUnit-Testing-512BD4)
+![Karma](https://img.shields.io/badge/Karma-Testing-56C5A8)
 
 <img src="docs/images/manager-dashboard.png" alt="Manager dashboard showing total outstanding exposure, exposure by market, claims by status, team workload and high-value open claims" width="860">
 
