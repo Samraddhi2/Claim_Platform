@@ -22,10 +22,8 @@
 ![REST API](https://img.shields.io/badge/REST-API-02569B)
 ![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D)
 ![Kafka](https://img.shields.io/badge/Kafka-optional-231F20)
-![Git](https://img.shields.io/badge/Git-F05032)
 ![GitHub](https://img.shields.io/badge/GitHub-181717)
 ![xUnit](https://img.shields.io/badge/xUnit-Testing-512BD4)
-![Karma](https://img.shields.io/badge/Karma-Testing-56C5A8)
 
 <img src="docs/images/manager-dashboard.png" alt="Manager dashboard showing total outstanding exposure, exposure by market, claims by status, team workload and high-value open claims" width="860">
 
