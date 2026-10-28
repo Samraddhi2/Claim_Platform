@@ -2,16 +2,6 @@
 
 A running record of **what was asked of the AI, what it produced, what was checked, and what still needs a human decision.**
 The rule of the house: you sign off every line you submit, so anything marked *Your call* below is yours to accept, change or reject.
-
-**How to read the status words**
-
-| Word | Meaning |
-|---|---|
-| **Verified** | The AI ran it and saw the result. The evidence is named. |
-| **Partly verified** | Run in a reduced environment or by a different tool than the real one. The gap is stated. |
-| **Not verified** | Written but never executed. |
-| **Your call** | A judgement or business decision a human must own. |
-
 ---
 
 ## Planning, architecture and design thinking
