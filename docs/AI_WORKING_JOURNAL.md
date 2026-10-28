@@ -2,6 +2,7 @@
 
 A running record of **what was asked of the AI, what it produced, what was checked, and what still needs a human decision.**
 The rule of the house: you sign off every line you submit, so anything marked *Your call* below is yours to accept, change or reject.
+
 ---
 
 ## Planning, architecture and design thinking
