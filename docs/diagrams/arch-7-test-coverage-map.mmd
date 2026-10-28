@@ -1,0 +1,14 @@
+flowchart LR
+  subgraph Tested["Tested and passing"]
+    D1["Domain rules<br/>ClaimStateMachine, entities, enums"]:::ok
+    D2["Event contract<br/>JSON wire format, provider switch"]:::ok
+    F1["Angular app<br/>all 22 files, 388 specs"]:::ok
+  end
+  subgraph Gap["No automated tests yet"]
+    B1["ClaimCommands, ClaimQueries<br/>(209 statements)"]:::gap
+    B2["Endpoints, Program<br/>(80 statements)"]:::gap
+    B3["Handlers, Messaging, DbContext, Seeder<br/>(266 statements)"]:::gap
+    B4["Kafka end to end"]:::gap
+  end
+  classDef ok fill:#d1fae5,stroke:#059669,color:#064e3b
+  classDef gap fill:#fee2e2,stroke:#dc2626,color:#7f1d1d

@@ -1,0 +1,19 @@
+sequenceDiagram
+  actor Officer
+  participant API
+  participant DB as Database
+  participant Relay as OutboxDispatcher
+  participant Bus as Event bus
+  participant H as Handlers
+
+  Officer->>API: POST /api/claims/42/approve
+  API->>API: state machine and four-eyes check
+  API->>DB: ONE transaction (claim, history row, outbox row)
+  API-->>Officer: 200 with the updated claim
+  loop polls every 300 ms
+    Relay->>DB: read unsent outbox rows
+    Relay->>Bus: publish ClaimApproved (key = claim id)
+  end
+  Bus->>H: ClaimApproved
+  H->>DB: notification for the claimant, exposure bucket recomputed
+  Note over Officer,H: The SPA polls every few seconds, so the claimant's bell lights up shortly after.

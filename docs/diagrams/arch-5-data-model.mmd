@@ -1,0 +1,73 @@
+erDiagram
+  APP_USER {
+    int Id PK
+    string Name
+    string Email UK
+    string Role "Claimant, Officer, Manager"
+    string Market "nullable home market"
+  }
+  CLAIM {
+    int Id PK
+    string ClaimNumber UK "CLM-2026-000042"
+    string Type "Motor, Property"
+    string Market "SG HK TH MY ID AU"
+    string Status
+    string PolicyNumber
+    decimal ClaimedAmount
+    decimal AssessedAmount "nullable"
+    decimal ApprovedAmount "nullable"
+    int ClaimantId FK
+    int AssignedOfficerId FK "nullable"
+    int Version "concurrency token"
+  }
+  CLAIM_HISTORY {
+    int Id PK
+    int ClaimId FK
+    string FromStatus "nullable"
+    string ToStatus
+    string Action
+    string ActorName
+    datetime At
+  }
+  INFO_REQUEST {
+    int Id PK
+    int ClaimId FK
+    string Message
+    string Response "nullable"
+  }
+  CLAIM_NOTE {
+    int Id PK
+    int ClaimId FK
+    string Text "staff only"
+  }
+  NOTIFICATION {
+    int Id PK
+    int UserId FK
+    guid EventId "unique with UserId"
+    string Message
+    bool IsRead
+  }
+  OUTBOX_MESSAGE {
+    long Id PK
+    guid EventId
+    string Type
+    string Key "claim id"
+    string Payload "JSON"
+    datetime DispatchedAt "null until sent"
+  }
+  EXPOSURE_PROJECTION {
+    int Id PK
+    string Market "unique with Type"
+    string Type
+    int OpenClaims
+    decimal OutstandingAmount
+  }
+
+  APP_USER ||--o{ CLAIM : "files (ClaimantId)"
+  APP_USER |o--o{ CLAIM : "handles (AssignedOfficerId)"
+  CLAIM ||--o{ CLAIM_HISTORY : "audit trail"
+  CLAIM ||--o{ INFO_REQUEST : "questions to claimant"
+  CLAIM ||--o{ CLAIM_NOTE : "internal notes"
+  APP_USER ||--o{ NOTIFICATION : receives
+  CLAIM ||..o{ OUTBOX_MESSAGE : "emits (Key = claim id, no foreign key)"
+  EXPOSURE_PROJECTION }o..o{ CLAIM : "summarises by market and type"

@@ -1,0 +1,33 @@
+flowchart LR
+  subgraph Clients
+    C["Claimant"]
+    O["Officer"]
+    M["Manager"]
+  end
+
+  SPA["Angular 17 SPA<br/>one app, three role-based views"]
+
+  subgraph Service["ClaimsPlatform.Api (ASP.NET Core 8, one deployable)"]
+    EP["Endpoints<br/>auth, role filters, error mapping"]
+    APP["Application<br/>ClaimCommands (write)<br/>ClaimQueries (read)"]
+    DOM["Domain<br/>entities, ClaimStateMachine"]
+    OUT["OutboxDispatcher<br/>(hosted service)"]
+    CON["Event consumer<br/>(hosted service)"]
+    HND["Handlers<br/>notifications<br/>exposure projection"]
+  end
+
+  DB[("SQLite<br/>claims, history, notes,<br/>notifications, read model, outbox")]
+  K{{"Event bus<br/>In-Memory Channel<br/>or Kafka topic claims.events"}}
+
+  C --> SPA
+  O --> SPA
+  M --> SPA
+  SPA -- "REST/JSON<br/>X-User-Id header" --> EP
+  EP --> APP
+  APP --> DOM
+  APP -- "claim + history + outbox row<br/>in ONE transaction" --> DB
+  OUT -- "reads unsent rows" --> DB
+  OUT -- "publishes" --> K
+  K --> CON
+  CON --> HND
+  HND -- "notifications,<br/>exposure buckets" --> DB

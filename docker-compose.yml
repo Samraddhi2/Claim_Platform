@@ -1,0 +1,28 @@
+services:
+  claims-api:
+    build:
+      context: .
+      dockerfile: backend/src/ClaimsPlatform.Api/Dockerfile
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Default: Data Source=/data/claims.db
+      DocumentStorage__Path: /data/uploads
+      Messaging__Provider: InMemory
+    ports:
+      - "5080:8080"
+    volumes:
+      - claims-data:/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - claims-api
+    restart: unless-stopped
+
+volumes:
+  claims-data:

@@ -1,0 +1,27 @@
+flowchart LR
+  subgraph Browser
+    SPA["Angular 17 SPA<br/>signals, lazy routes,<br/>role guards"]
+  end
+
+  subgraph API["ASP.NET Core 8 API (one deployable)"]
+    EP["Endpoints<br/>role filters,<br/>error mapping"]
+    CMD["ClaimCommands<br/>write side"]
+    QRY["ClaimQueries<br/>read side"]
+    SM["ClaimStateMachine<br/>pure business rules"]
+    OB["OutboxDispatcher<br/>background relay"]
+    HD["Event handlers<br/>notifications,<br/>exposure projection"]
+  end
+
+  DB[("SQLite<br/>claims, history,<br/>outbox, read model")]
+  BUS{{"Event bus<br/>In-Memory channel<br/>or Kafka topic"}}
+
+  SPA -- "REST + X-User-Id" --> EP
+  EP --> CMD
+  EP --> QRY
+  CMD --> SM
+  CMD -- "one transaction:<br/>state + history + outbox row" --> DB
+  QRY --> DB
+  DB -. "unsent rows" .-> OB
+  OB --> BUS
+  BUS --> HD
+  HD --> DB

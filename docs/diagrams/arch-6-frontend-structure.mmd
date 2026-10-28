@@ -1,0 +1,18 @@
+flowchart LR
+  subgraph SPA["Angular SPA"]
+    direction LR
+    G["authGuard<br/>roleGuard"]
+    SH["Shell<br/>sidebar, top bar, bell<br/>polls every 4 s"]
+    PG["Pages (lazy)<br/>login, new claim, lists,<br/>claim detail, workload, dashboard"]
+    AU["AuthService<br/>user signal,<br/>localStorage"]
+    AP["ApiService<br/>typed REST client"]
+    IN["httpInterceptor<br/>X-User-Id, toasts, 401"]
+  end
+  API[".NET API"]
+
+  G --> AU
+  SH --> AP
+  PG --> AP
+  PG --> AU
+  AP --> IN
+  IN --> API

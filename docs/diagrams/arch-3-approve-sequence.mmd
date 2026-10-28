@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor Officer
+  participant API as Endpoint + ClaimCommands
+  participant DB as Database
+  participant Relay as OutboxDispatcher
+  participant Bus as Event bus
+  participant H as Handlers
+  actor Claimant
+
+  Officer->>API: POST /api/claims/42/approve
+  API->>DB: load claim
+  API->>API: handler check, state machine, four-eyes check
+  API->>DB: ONE SaveChanges: claim, history row, outbox row
+  API-->>Officer: 200 with the updated claim
+  Note over API,Officer: The officer never waits for notifications or reporting.
+  Relay->>DB: unsent rows, oldest first
+  Relay->>Bus: publish ClaimApproved (key = 42)
+  Relay->>DB: stamp DispatchedAt
+  Bus->>H: ClaimApproved
+  H->>DB: notification for claimant (unique per event and user)
+  H->>DB: recompute exposure bucket for (market, type)
+  Claimant->>API: poll notifications (every 4 s)
+  API-->>Claimant: "Good news - claim approved for 85,000"

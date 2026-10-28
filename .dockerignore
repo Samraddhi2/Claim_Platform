@@ -1,0 +1,12 @@
+.git
+**/node_modules
+**/dist
+**/bin
+**/obj
+**/TestResults
+**/coverage
+**/.angular
+**/uploads
+**/*.db
+**/*.db-shm
+**/*.db-wal

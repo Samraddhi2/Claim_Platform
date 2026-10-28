@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "InMemory": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Messaging__Provider": "InMemory"
+      }
+    },
+    "Kafka": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Messaging__Provider": "Kafka",
+        "Messaging__BootstrapServers": "localhost:9092"
+      }
+    }
+  }
+}

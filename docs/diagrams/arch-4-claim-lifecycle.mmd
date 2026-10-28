@@ -1,0 +1,18 @@
+stateDiagram-v2
+  direction LR
+  [*] --> Submitted
+  Submitted --> UnderReview: picked up
+  Submitted --> Withdrawn: claimant
+  UnderReview --> InfoRequested: question
+  InfoRequested --> UnderReview: reply
+  UnderReview --> Assessed: valued
+  UnderReview --> Rejected: reason required
+  UnderReview --> Withdrawn: claimant
+  InfoRequested --> Withdrawn: claimant
+  Assessed --> Approved: over 50,000 needs manager
+  Assessed --> Rejected
+  Assessed --> UnderReview: sent back
+  Approved --> Settled: paid
+  Rejected --> [*]
+  Settled --> [*]
+  Withdrawn --> [*]

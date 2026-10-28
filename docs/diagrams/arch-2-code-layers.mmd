@@ -1,0 +1,10 @@
+flowchart TB
+  EP["Endpoints<br/>HTTP surface, role filters"]
+  APP["Application<br/>ClaimCommands, ClaimQueries, DTOs"]
+  DOM["Domain<br/>entities, enums, ClaimStateMachine"]
+  INF["Infrastructure<br/>EF Core DbContext, outbox,<br/>event bus, handlers, seeder"]
+
+  EP --> APP
+  APP --> DOM
+  APP --> INF
+  INF --> DOM

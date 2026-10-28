@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.angular/
+bin/
+obj/
+*.db
+*.db-shm
+*.db-wal
+.vs/
+.idea/
+
+# Uploaded claim evidence
+backend/src/ClaimsPlatform.Api/uploads/
